@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#14120f">
+<meta name="description" content="Bledmusic — site hommage à l'émission musicale algérienne Bled Music. Archives, clips et souvenirs.">
+<title>Bledmusic — La mémoire musicale algérienne</title>
+<style>
+  :root {
+    --bg: #14120f;
+    --panel: #201c17;
+    --panel-2: #29231c;
+    --cream: #f4ead8;
+    --muted: #b7a995;
+    --red: #d94b35;
+    --gold: #e2b65d;
+    --green: #66846a;
+    --line: rgba(244,234,216,.14);
+    --radius: 18px;
+    --shadow: 0 18px 50px rgba(0,0,0,.28);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background:
+      radial-gradient(ellipse at 12% 0%, rgba(217,75,53,.11), transparent 32rem),
+      radial-gradient(ellipse at 92% 18%, rgba(226,182,93,.08), transparent 28rem),
+      var(--bg);
+    color: var(--cream); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.55;
+  }
+  a { color: inherit; text-decoration: none; }
+  button, input { font: inherit; }
+  button { cursor: pointer; }
+  .wrap { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+  .topline { height: 5px; background: linear-gradient(90deg, var(--green) 0 33.3%, var(--cream) 33.3% 66.6%, var(--red) 66.6%); }
+  header { border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; background: rgba(20,18,15,.9); backdrop-filter: blur(16px); }
+  .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: -.06em; font-size: 1.55rem; }
+  .brand-mark { width: 38px; aspect-ratio: 1; display: grid; place-items: center; background: var(--red); color: white; border-radius: 11px; transform: rotate(-4deg); box-shadow: 4px 4px 0 var(--gold); font-size: 1.15rem; }
+  .brand span:last-child { color: var(--gold); }
+  nav { display: flex; gap: 25px; align-items: center; color: var(--muted); font-size: .92rem; }
+  nav a:hover, nav a:focus-visible { color: var(--cream); }
+  .nav-cta { padding: 10px 15px; border: 1px solid var(--line); border-radius: 999px; color: var(--cream); }
+  .menu-btn { display: none; background: none; color: var(--cream); border: 1px solid var(--line); padding: 8px 11px; border-radius: 10px; }
+  .hero { padding: 70px 0 54px; display: grid; grid-template-columns: 1.08fr .92fr; gap: 42px; align-items: center; }
+  .eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .17em; font-size: .74rem; font-weight: 800; display: flex; gap: 10px; align-items: center; }
+  .eyebrow:before { content: ""; width: 27px; height: 2px; background: var(--red); }
+  h1 { font-size: clamp(3rem, 6.6vw, 6rem); line-height: .94; letter-spacing: -.075em; margin: 20px 0; max-width: 720px; }
+  h1 em { font-style: normal; color: var(--gold); }
+  .hero-copy { color: var(--muted); max-width: 560px; font-size: 1.08rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .btn { border: 0; padding: 13px 18px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; font-weight: 800; transition: transform .2s, background .2s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: var(--red); color: white; box-shadow: 0 8px 24px rgba(217,75,53,.22); }
+  .btn-secondary { background: transparent; color: var(--cream); border: 1px solid var(--line); }
+  .hero-art { min-height: 410px; position: relative; display: grid; place-items: center; }
+  .poster {
+    width: min(100%, 440px); aspect-ratio: .9; border-radius: 24px; overflow: hidden; position: relative;
+    background:
+      radial-gradient(circle at 70% 28%, rgba(226,182,93,.95) 0 8%, transparent 8.5%),
+      repeating-linear-gradient(135deg, transparent 0 16px, rgba(244,234,216,.045) 16px 18px),
+      linear-gradient(145deg, #a93627, #59251f 52%, #211b16);
+    border: 1px solid rgba(244,234,216,.18); box-shadow: var(--shadow); transform: rotate(2deg);
+  }
+  .poster:before { content: "BLED"; position: absolute; top: 10%; left: 7%; font-weight: 1000; letter-spacing: -.1em; line-height: .8; font-size: clamp(4rem, 9vw, 7.5rem); color: #f4ead8; text-shadow: 5px 5px 0 #241d17; }
+  .poster:after { content: "MUSIC"; position: absolute; top: 30%; left: 8%; font-weight: 1000; letter-spacing: -.08em; line-height: .8; font-size: clamp(3.6rem, 8vw, 6.7rem); color: var(--gold); text-shadow: 5px 5px 0 #241d17; }
+  .poster-sticker { position: absolute; z-index: 2; bottom: 9%; left: 9%; right: 9%; border-top: 1px solid rgba(244,234,216,.5); padding-top: 13px; display: flex; justify-content: space-between; gap: 12px; align-items: end; text-transform: uppercase; letter-spacing: .12em; font-size: .7rem; font-weight: 800; }
+  .poster-disc { position: absolute; width: 42%; aspect-ratio: 1; border-radius: 50%; right: -5%; bottom: 17%; background: repeating-radial-gradient(circle, #171513 0 2px, #3b342a 3px 4px, #171513 5px 7px); border: 10px solid #111; box-shadow: 0 12px 30px #170e0b; }
+  .poster-disc:after { content: ""; position: absolute; width: 23%; aspect-ratio: 1; border-radius: 50%; background: var(--gold); inset: 38.5%; border: 4px solid #1a1713; }
+  .floating-note { position: absolute; right: -8px; top: 8%; padding: 12px 15px; background: var(--gold); color: #21180f; border-radius: 12px; font-size: .75rem; font-weight: 900; transform: rotate(6deg); box-shadow: var(--shadow); }
+  .ticker { overflow: hidden; border-block: 1px solid var(--line); background: rgba(255,255,255,.02); }
+  .ticker-inner { display: flex; width: max-content; gap: 28px; padding: 13px 0; color: var(--muted); text-transform: uppercase; letter-spacing: .16em; font-size: .72rem; font-weight: 800; animation: drift 34s linear infinite; }
+  .ticker-inner b { color: var(--red); }
+  @keyframes drift { to { transform: translateX(-50%); } }
+  section { padding: 72px 0; }
+  .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 28px; }
+  .section-head h2 { margin: 9px 0 0; font-size: clamp(2rem, 4vw, 3.35rem); line-height: 1; letter-spacing: -.06em; }
+  .section-head p { color: var(--muted); max-width: 390px; margin: 0; }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
+  .filter { background: transparent; border: 1px solid var(--line); color: var(--muted); padding: 8px 13px; border-radius: 999px; font-size: .85rem; }
+  .filter.active, .filter:hover { background: var(--cream); color: var(--bg); border-color: var(--cream); }
+  .search { width: min(100%, 300px); display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 999px; padding: 9px 14px; color: var(--muted); }
+  .search input { min-width: 0; width: 100%; background: transparent; color: var(--cream); border: 0; outline: 0; }
+  .search input::placeholder { color: #887d6d; }
+  .archive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .archive-card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .2s, border-color .2s; }
+  .archive-card:hover { transform: translateY(-4px); border-color: rgba(226,182,93,.45); }
+  .thumb { aspect-ratio: 16 / 10; position: relative; display: grid; place-items: center; overflow: hidden; background: linear-gradient(135deg, #653126, #2d2520); }
+  .thumb:before { content: ""; position: absolute; inset: 0; opacity: .55; background: repeating-linear-gradient(135deg, transparent 0 14px, rgba(255,255,255,.07) 14px 16px); }
+  .thumb[data-tone="gold"] { background: linear-gradient(135deg, #8c642d, #31251c); }
+  .thumb[data-tone="green"] { background: linear-gradient(135deg, #3e6650, #1c2922); }
+  .thumb[data-tone="blue"] { background: linear-gradient(135deg, #3b4d64, #211e27); }
+  .thumb[data-tone="plum"] { background: linear-gradient(135deg, #75434f, #281d25); }
+  .thumb[data-tone="rust"] { background: linear-gradient(135deg, #b04b2c, #42231c); }
+  .thumb .orbit { width: 116px; aspect-ratio: 1; border: 1px solid rgba(244,234,216,.35); border-radius: 50%; position: absolute; transform: rotate(-22deg) scaleX(1.5); }
+  .thumb .orbit:after { content: ""; position: absolute; width: 9px; height: 9px; background: var(--gold); border-radius: 50%; top: 10px; left: 13px; }
+  .play { width: 54px; height: 54px; z-index: 1; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.55); background: rgba(20,18,15,.7); border-radius: 50%; color: white; padding-left: 3px; backdrop-filter: blur(8px); }
+  .play:hover { background: var(--red); }
+  .duration { position: absolute; bottom: 12px; right: 12px; z-index: 2; background: rgba(0,0,0,.65); padding: 4px 7px; border-radius: 6px; font-size: .72rem; }
+  .card-content { padding: 18px; }
+  .tag { display: inline-block; color: var(--gold); font-size: .7rem; font-weight: 900; text-transform: uppercase; letter-spacing: .13em; }
+  .card-content h3 { margin: 8px 0 7px; font-size: 1.15rem; line-height: 1.25; letter-spacing: -.025em; }
+  .card-content p { color: var(--muted); font-size: .88rem; margin: 0; }
+  .card-meta { display: flex; justify-content: space-between; gap: 12px; margin-top: 17px; padding-top: 13px; border-top: 1px solid var(--line); color: #918573; font-size: .75rem; }
+  .empty { display: none; grid-column: 1/-1; padding: 28px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: var(--radius); }
+  .story { display: grid; grid-template-columns: .85fr 1.15fr; gap: 46px; align-items: center; }
+  .story-art { min-height: 330px; border-radius: 22px; background: linear-gradient(145deg, #e2b65d, #b94831 55%, #3b2a20); position: relative; overflow: hidden; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; color: #201710; box-shadow: var(--shadow); }
+  .story-art:after { content: "♪"; position: absolute; font-size: 19rem; font-weight: 900; line-height: 1; right: -10px; bottom: -60px; opacity: .15; transform: rotate(-14deg); }
+  .story-art strong { font-size: clamp(2.7rem, 5vw, 4.5rem); letter-spacing: -.09em; line-height: .85; max-width: 270px; z-index: 1; }
+  .story-art small { text-transform: uppercase; letter-spacing: .18em; font-weight: 900; z-index: 1; }
+  .story-copy h2 { font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -.06em; line-height: 1; margin: 12px 0 20px; }
+  .story-copy p { color: var(--muted); }
+  .note { margin-top: 22px; padding: 15px 17px; border-left: 3px solid var(--gold); background: rgba(226,182,93,.07); color: var(--muted); font-size: .86rem; border-radius: 0 10px 10px 0; }
+  .contribute { border: 1px solid var(--line); background: linear-gradient(120deg, rgba(217,75,53,.12), rgba(226,182,93,.06)); border-radius: 24px; padding: clamp(25px, 5vw, 48px); display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+  .contribute h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -.06em; line-height: 1; margin: 10px 0; }
+  .contribute p { color: var(--muted); max-width: 580px; margin-bottom: 0; }
+  footer { border-top: 1px solid var(--line); padding: 28px 0; color: #938675; font-size: .82rem; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+  .modal { display: none; position: fixed; inset: 0; z-index: 30; background: rgba(0,0,0,.78); padding: 20px; align-items: center; justify-content: center; }
+  .modal.open { display: flex; }
+  .modal-box { width: min(650px, 100%); background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 25px; box-shadow: var(--shadow); position: relative; }
+  .modal-close { position: absolute; right: 14px; top: 12px; border: 1px solid var(--line); background: transparent; color: var(--cream); border-radius: 50%; width: 36px; height: 36px; font-size: 1.2rem; }
+  .modal-box h2 { margin: 10px 40px 10px 0; letter-spacing: -.04em; }
+  .modal-box p { color: var(--muted); }
+  .video-placeholder { aspect-ratio: 16/9; background: #0b0a09; border-radius: 12px; display: grid; place-items: center; text-align: center; padding: 20px; color: var(--muted); border: 1px solid var(--line); }
+  .video-placeholder .big-play { font-size: 2.6rem; color: var(--red); }
+  .modal-box label { display: block; font-size: .85rem; color: var(--muted); margin: 15px 0 7px; }
+  .modal-box input { width: 100%; background: #14120f; color: var(--cream); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .toast { position: fixed; bottom: 20px; left: 50%; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: var(--cream); color: var(--bg); padding: 12px 17px; border-radius: 999px; font-size: .85rem; font-weight: 800; transition: .25s; z-index: 40; max-width: calc(100% - 30px); text-align: center; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+  @media (max-width: 850px) {
+    .hero { grid-template-columns: 1fr; padding-top: 48px; }
+    .hero-art { min-height: 360px; }
+    .poster { width: min(75%, 370px); }
+    .archive-grid { grid-template-columns: repeat(2, 1fr); }
+    .story { grid-template-columns: 1fr; gap: 28px; }
+    .story-art { min-height: 270px; }
+  }
+  @media (max-width: 620px) {
+    .wrap { width: min(100% - 28px, 1160px); }
+    .nav { min-height: 68px; }
+    .menu-btn { display: block; }
+    nav { display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 18px 20px 22px; background: #171410; border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; gap: 15px; }
+    nav.open { display: flex; }
+    .nav-cta { text-align: center; }
+    .hero { gap: 15px; padding-top: 40px; }
+    h1 { font-size: clamp(3.2rem, 16vw, 5rem); }
+    .hero-art { min-height: 320px; }
+    .poster { width: min(78%, 330px); }
+    .floating-note { right: 0; }
+    section { padding: 52px 0; }
+    .section-head { align-items: start; flex-direction: column; }
+    .search { width: 100%; }
+    .archive-grid { grid-template-columns: 1fr; }
+    .archive-card { display: grid; grid-template-columns: 42% 58%; }
+    .thumb { height: 100%; min-height: 190px; aspect-ratio: auto; }
+    .card-content { padding: 14px; }
+    .card-content h3 { font-size: 1rem; }
+    .card-content p { font-size: .8rem; }
+    .card-meta { flex-direction: column; gap: 4px; margin-top: 10px; padding-top: 9px; }
+    .contribute { align-items: start; flex-direction: column; }
+  }
+  @media (prefers-reduced-motion: reduce) { *, *:before, *:after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+</head>
+<body>
+<div class="topline"></div>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#accueil" aria-label="Bledmusic, accueil">
+      <span class="brand-mark">♪</span><span>BLED<span>MUSIC</span></span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">Menu ☰</button>
+    <nav id="mainNav" aria-label="Navigation principale">
+      <a href="#archives">Les archives</a>
+      <a href="#histoire">L'histoire</a>
+      <a href="#contribuer">Participer</a>
+      <a class="nav-cta" href="#archives">Explorer la collection ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="wrap hero" id="accueil">
+    <div>
+      <div class="eyebrow">Mémoire musicale · Algérie</div>
+      <h1>Le son d'une <em>époque.</em></h1>
+      <p class="hero-copy">Un hommage à Bled Music, à celles et ceux qui l'ont regardée, aux artistes qui ont marqué les écrans et aux chansons qui continuent de nous rassembler.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#archives">▶ Explorer les archives</a>
+        <a class="btn btn-secondary" href="#histoire">Découvrir l'histoire</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-label="Affiche graphique rétro Bled Music">
+      <div class="poster">
+        <div class="poster-disc"></div>
+        <div class="poster-sticker"><span>Une mémoire<br>à partager</span><span>DZ · Archives</span></div>
+      </div>
+      <div class="floating-note">★ Souvenirs en stéréo</div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true"><div class="ticker-inner">
+    <span>Souvenirs en stéréo <b>✳</b></span><span>La musique nous relie <b>✳</b></span><span>Algérie · archives vivantes <b>✳</b></span><span>Les années qui résonnent <b>✳</b></span><span>Souvenirs en stéréo <b>✳</b></span><span>La musique nous relie <b>✳</b></span><span>Algérie · archives vivantes <b>✳</b></span><span>Les années qui résonnent <b>✳</b></span>
+  </div></div>
+
+  <section class="wrap" id="archives">
+    <div class="section-head">
+      <div><div class="eyebrow">La collection</div><h2>Archives & clips</h2></div>
+      <p>Parcourez les souvenirs, retrouvez les sons et aidez à enrichir cette mémoire collective.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filtrer les archives">
+      <button class="filter active" data-filter="tout">Tout voir</button>
+      <button class="filter" data-filter="emission">Émissions</button>
+      <button class="filter" data-filter="clips">Clips musicaux</button>
+      <button class="filter" data-filter="artistes">Artistes</button>
+      <label class="search" aria-label="Rechercher dans les archives">⌕ <input id="searchInput" type="search" placeholder="Rechercher un souvenir…"></label>
+    </div>
+
+    <div class="archive-grid" id="archiveGrid">
+      <article class="archive-card" data-category="emission" data-search="bled music plateau émission souvenirs télévision">
+        <div class="thumb" data-tone="rust"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur Bled Music : le plateau">▶</button><span class="duration">Archive</span></div>
+        <div class="card-content"><span class="tag">Émission</span><h3>Bled Music : le plateau</h3><p>Retour dans l'ambiance de l'émission et de ses rendez-vous musicaux.</p><div class="card-meta"><span>Souvenir télévisuel</span><span>Archive à compléter ↗</span></div></div>
+      </article>
+      <article class="archive-card" data-category="clips" data-search="raï clips musique algérie années 90">
+        <div class="thumb" data-tone="gold"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur les sons raï">▶</button><span class="duration">Sélection</span></div>
+        <div class="card-content"><span class="tag">Clips musicaux</span><h3>Les sons raï qui restent</h3><p>Une place pour les refrains, les clips et les découvertes qui ont marqué une génération.</p><div class="card-meta"><span>Raï · Pop algérienne</span><span>Collection thématique</span></div></div>
+      </article>
+      <article class="archive-card" data-category="artistes" data-search="artistes invités chanteurs musiciens scène algérienne">
+        <div class="thumb" data-tone="green"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur les artistes invités">▶</button><span class="duration">Portraits</span></div>
+        <div class="card-content"><span class="tag">Artistes</span><h3>Les visages de la scène</h3><p>Des portraits d'artistes, de musiciens et d'invités à retrouver au fil des archives.</p><div class="card-meta"><span>Portraits & témoignages</span><span>Collection à enrichir</span></div></div>
+      </article>
+      <article class="archive-card" data-category="emission" data-search="animateurs souvenirs coulisses télévision algérienne">
+        <div class="thumb" data-tone="blue"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur les coulisses">▶</button><span class="duration">Coulisses</span></div>
+        <div class="card-content"><span class="tag">Émission</span><h3>Dans les coulisses</h3><p>Les animateurs, les équipes et les petits détails qui donnent vie aux souvenirs.</p><div class="card-meta"><span>Récits de plateau</span><span>Archives recherchées</span></div></div>
+      </article>
+      <article class="archive-card" data-category="clips" data-search="chansons classiques clips patrimoine musical algérien">
+        <div class="thumb" data-tone="plum"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur les classiques">▶</button><span class="duration">Classiques</span></div>
+        <div class="card-content"><span class="tag">Clips musicaux</span><h3>Les classiques à revoir</h3><p>Une sélection à construire autour des chansons qui traversent les années.</p><div class="card-meta"><span>Patrimoine musical</span><span>Liens vidéo à ajouter</span></div></div>
+      </article>
+      <article class="archive-card" data-category="artistes" data-search="vos cassettes photos témoignages famille souvenirs bled music">
+        <div class="thumb" data-tone="rust"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur vos souvenirs">▶</button><span class="duration">Communauté</span></div>
+        <div class="card-content"><span class="tag">Vos souvenirs</span><h3>La mémoire des téléspectateurs</h3><p>Photos, anecdotes et souvenirs personnels pour faire revivre cette époque.</p><div class="card-meta"><span>Archives participatives</span><span>Appel à contribution</span></div></div>
+      </article>
+      <div class="empty" id="emptyState">Aucun résultat pour cette recherche. Essayez un autre mot-clé.</div>
+    </div>
+  </section>
+
+  <section class="wrap" id="histoire">
+    <div class="story">
+      <div class="story-art"><small>Algérie · Mémoire · Musique</small><strong>Ce n'est pas juste une chanson.</strong><small>Ce sont nos souvenirs.</small></div>
+      <div class="story-copy">
+        <div class="eyebrow">Pourquoi Bledmusic ?</div>
+        <h2>Une mémoire qui mérite de rester vivante.</h2>
+        <p>Bledmusic.com est pensé comme un site hommage à l'émission Bled Music et à une période marquante de la culture musicale à la télévision algérienne.</p>
+        <p>L'idée : rassembler les vidéos retrouvées, identifier les artistes, raconter les coulisses et préserver les témoignages de celles et ceux qui s'en souviennent.</p>
+        <div class="note"><strong>Un projet d'archives en construction.</strong> Les vignettes de cette maquette sont illustratives : ajoutez les véritables vidéos, dates, crédits et sources au fur et à mesure de vos recherches.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="contribuer">
+    <div class="contribute">
+      <div><div class="eyebrow">À vous de jouer</div><h2>Vous avez une archive ?</h2><p>Une cassette, une photo, un extrait d'émission ou le souvenir d'un artiste invité ? Chaque piste peut aider à compléter la collection.</p></div>
+      <button class="btn btn-primary" id="contributeBtn">＋ Proposer une archive</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <a class="brand" href="#accueil"><span class="brand-mark">♪</span><span>BLED<span>MUSIC</span></span></a>
+    <span>Un site hommage indépendant · Les souvenirs appartiennent à tous.</span>
+    <div class="footer-links"><a href="#archives">Archives</a><a href="#histoire">À propos</a><a href="#contribuer">Contribuer</a></div>
+  </div>
+  <div class="wrap" style="margin-top:14px;max-width:1160px">Les contenus d'archives restent la propriété de leurs ayants droit. Ce site maquette n'est pas affilié à l'ENTV ni aux détenteurs des droits de l'émission.</div>
+</footer>
+
+<div class="modal" id="archiveModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Fermer">×</button>
+    <span class="tag">Archives Bledmusic</span>
+    <h2 id="modalTitle">Une archive à retrouver</h2>
+    <div class="video-placeholder"><div><div class="big-play">▶</div><strong>Emplacement vidéo</strong><br><small>Ajoutez ici un lien vidéo vérifié et autorisé.</small></div></div>
+    <p id="modalDescription">Cette carte est une entrée de collection illustrative. Elle ne contient pas encore d'enregistrement original.</p>
+    <p><strong>Pour intégrer une vidéo :</strong> remplacez ce bloc par un lecteur intégré provenant d'une source officielle ou autorisée.</p>
+  </div>
+</div>
+
+<div class="modal" id="contributeModal" role="dialog" aria-modal="true" aria-labelledby="contributeTitle">
+  <div class="modal-box">
+    <button class="modal-close" id="contributeClose" aria-label="Fermer">×</button>
+    <span class="tag">Mémoire collective</span>
+    <h2 id="contributeTitle">Proposer une archive</h2>
+    <p>Ce formulaire de démonstration prépare votre message dans votre application de messagerie. Aucun fichier n'est téléversé ni stocké sur ce site.</p>
+    <form id="contributeForm">
+      <label for="contribName">Votre nom (facultatif)</label><input id="contribName" name="name" placeholder="Comment vous appeler ?">
+      <label for="contribType">Type d'archive</label><input id="contribType" name="type" required placeholder="Ex. : extrait, photo, nom d'un artiste">
+      <label for="contribDetails">Détails ou lien (facultatif)</label><input id="contribDetails" name="details" placeholder="URL, date approximative, souvenir…">
+      <div class="actions"><button class="btn btn-primary" type="submit">Préparer un e-mail ↗</button><button class="btn btn-secondary" type="button" id="cancelContribute">Annuler</button></div>
+    </form>
+    <p><small>Avant publication, vérifiez les droits et le consentement des personnes représentées.</small></p>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const nav = document.getElementById('mainNav');
+  menuBtn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+  nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    nav.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  const filters = [...document.querySelectorAll('.filter')];
+  const cards = [...document.querySelectorAll('.archive-card')];
+  const searchInput = document.getElementById('searchInput');
+  const emptyState = document.getElementById('emptyState');
+  let activeFilter = 'tout';
+  function filterCards() {
+    const query = searchInput.value.trim().toLocaleLowerCase('fr');
+    let visible = 0;
+    cards.forEach(card => {
+      const categoryMatch = activeFilter === 'tout' || card.dataset.category === activeFilter;
+      const searchMatch = (card.dataset.search + ' ' + card.innerText).toLocaleLowerCase('fr').includes(query);
+      const show = categoryMatch && searchMatch;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    emptyState.style.display = visible ? 'none' : 'block';
+  }
+  filters.forEach(button => button.addEventListener('click', () => {
+    activeFilter = button.dataset.filter;
+    filters.forEach(item => item.classList.toggle('active', item === button));
+    filterCards();
+  }));
+  searchInput.addEventListener('input', filterCards);
+
+  const archiveModal = document.getElementById('archiveModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDescription = document.getElementById('modalDescription');
+  function openArchive(card) {
+    modalTitle.textContent = card.querySelector('h3').textContent;
+    modalDescription.textContent = card.querySelector('p').textContent + ' Les informations vidéo seront ajoutées dès qu’une source vérifiée sera disponible.';
+    archiveModal.classList.add('open');
+    document.getElementById('modalClose').focus();
+  }
+  document.querySelectorAll('.archive-card .play').forEach(button => {
+    button.addEventListener('click', () => openArchive(button.closest('.archive-card')));
+  });
+  function closeModal(modal) { modal.classList.remove('open'); }
+  document.getElementById('modalClose').addEventListener('click', () => closeModal(archiveModal));
+  archiveModal.addEventListener('click', event => { if (event.target === archiveModal) closeModal(archiveModal); });
+
+  const contributeModal = document.getElementById('contributeModal');
+  document.getElementById('contributeBtn').addEventListener('click', () => {
+    contributeModal.classList.add('open');
+    document.getElementById('contribType').focus();
+  });
+  document.getElementById('contributeClose').addEventListener('click', () => closeModal(contributeModal));
+  document.getElementById('cancelContribute').addEventListener('click', () => closeModal(contributeModal));
+  contributeModal.addEventListener('click', event => { if (event.target === contributeModal) closeModal(contributeModal); });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      closeModal(archiveModal);
+      closeModal(contributeModal);
+    }
+  });
+
+  document.getElementById('contributeForm').addEventListener('submit', event => {
+    event.preventDefault();
+    const name = document.getElementById('contribName').value.trim() || 'Non précisé';
+    const type = document.getElementById('contribType').value.trim();
+    const details = document.getElementById('contribDetails').value.trim() || 'Aucun détail fourni';
+    const subject = encodeURIComponent('Contribution aux archives Bledmusic');
+    const body = encodeURIComponent(`Bonjour,\n\nJe souhaite proposer une archive pour Bledmusic.com.\n\nNom : ${name}\nType d'archive : ${type}\nDétails / lien : ${details}\n\nMerci !`);
+    closeModal(contributeModal);
+    showToast('Votre application de messagerie va s’ouvrir. Configurez l’adresse de contact avant publication.');
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+  });
+
+  let toastTimer;
+  function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 3800);
+  }
+})();
+</script>
+</body>
+</html>
