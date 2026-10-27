@@ -127,10 +127,6 @@
   .modal-box p { color: var(--muted); }
   .video-placeholder { aspect-ratio: 16/9; background: #0b0a09; border-radius: 12px; display: grid; place-items: center; text-align: center; padding: 20px; color: var(--muted); border: 1px solid var(--line); }
   .video-placeholder .big-play { font-size: 2.6rem; color: var(--red); }
-  .modal-box label { display: block; font-size: .85rem; color: var(--muted); margin: 15px 0 7px; }
-  .modal-box input { width: 100%; background: #14120f; color: var(--cream); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
-  .toast { position: fixed; bottom: 20px; left: 50%; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: var(--cream); color: var(--bg); padding: 12px 17px; border-radius: 999px; font-size: .85rem; font-weight: 800; transition: .25s; z-index: 40; max-width: calc(100% - 30px); text-align: center; }
-  .toast.show { opacity: 1; transform: translate(-50%, 0); }
   :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
   @media (max-width: 850px) {
     .hero { grid-template-columns: 1fr; padding-top: 48px; }
@@ -295,18 +291,11 @@
   <div class="modal-box">
     <button class="modal-close" id="contributeClose" aria-label="Fermer">×</button>
     <span class="tag">Mémoire collective</span>
-    <h2 id="contributeTitle">Proposer une archive</h2>
-    <p>Ce formulaire de démonstration prépare votre message dans votre application de messagerie. Aucun fichier n'est téléversé ni stocké sur ce site.</p>
-    <form id="contributeForm">
-      <label for="contribName">Votre nom (facultatif)</label><input id="contribName" name="name" placeholder="Comment vous appeler ?">
-      <label for="contribType">Type d'archive</label><input id="contribType" name="type" required placeholder="Ex. : extrait, photo, nom d'un artiste">
-      <label for="contribDetails">Détails ou lien (facultatif)</label><input id="contribDetails" name="details" placeholder="URL, date approximative, souvenir…">
-      <div class="actions"><button class="btn btn-primary" type="submit">Préparer un e-mail ↗</button><button class="btn btn-secondary" type="button" id="cancelContribute">Annuler</button></div>
-    </form>
-    <p><small>Avant publication, vérifiez les droits et le consentement des personnes représentées.</small></p>
+    <h2 id="contributeTitle">Contribuer sur GitHub</h2>
+    <p>Retrouvez le projet et partagez vos idées ou vos archives directement sur GitHub.</p>
+    <a class="btn btn-primary" id="contributeGithubLink" href="https://github.com/nazimboudeffa/bledmusic-static" target="_blank" rel="noopener noreferrer">Voir le projet sur GitHub ↗</a>
   </div>
 </div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 (() => {
@@ -364,10 +353,9 @@
   const contributeModal = document.getElementById('contributeModal');
   document.getElementById('contributeBtn').addEventListener('click', () => {
     contributeModal.classList.add('open');
-    document.getElementById('contribType').focus();
+    document.getElementById('contributeGithubLink').focus();
   });
   document.getElementById('contributeClose').addEventListener('click', () => closeModal(contributeModal));
-  document.getElementById('cancelContribute').addEventListener('click', () => closeModal(contributeModal));
   contributeModal.addEventListener('click', event => { if (event.target === contributeModal) closeModal(contributeModal); });
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape') {
@@ -375,27 +363,6 @@
       closeModal(contributeModal);
     }
   });
-
-  document.getElementById('contributeForm').addEventListener('submit', event => {
-    event.preventDefault();
-    const name = document.getElementById('contribName').value.trim() || 'Non précisé';
-    const type = document.getElementById('contribType').value.trim();
-    const details = document.getElementById('contribDetails').value.trim() || 'Aucun détail fourni';
-    const subject = encodeURIComponent('Contribution aux archives Bledmusic');
-    const body = encodeURIComponent(`Bonjour,\n\nJe souhaite proposer une archive pour Bledmusic.com.\n\nNom : ${name}\nType d'archive : ${type}\nDétails / lien : ${details}\n\nMerci !`);
-    closeModal(contributeModal);
-    showToast('Votre application de messagerie va s’ouvrir. Configurez l’adresse de contact avant publication.');
-    window.location.href = `mailto:?subject=${subject}&body=${body}`;
-  });
-
-  let toastTimer;
-  function showToast(message) {
-    const toast = document.getElementById('toast');
-    toast.textContent = message;
-    toast.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.remove('show'), 3800);
-  }
 })();
 </script>
 </body>
