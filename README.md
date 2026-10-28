@@ -28,7 +28,8 @@ Puis ouvrez [http://localhost:8000](http://localhost:8000).
 
 ```text
 .
-└── index.html   # Page, styles et interactions JavaScript
+├── index.html   # Page, styles et interactions JavaScript
+└── images/      # Visuels utilisés par les cartes d’archives
 ```
 
 Le site est volontairement autonome : le HTML, le CSS et le JavaScript sont réunis dans `index.html`.
@@ -44,6 +45,8 @@ Les cartes de la collection se trouvent dans la section `#archives` de `index.ht
 5. Vérifiez le rendu sur ordinateur et mobile, ainsi que les filtres et la recherche.
 
 Les fenêtres de détail sont actuellement des emplacements de présentation. Les liens, dates, crédits et médias réels doivent être vérifiés avant publication.
+
+La fiche « Cheb Fayçal — Sakina » utilise `images/Cheb Fayçal - Sakina (1991).jpg` et propose deux écoutes Spotify : une version ancienne et une nouvelle version du titre.
 
 ## Contribuer
 

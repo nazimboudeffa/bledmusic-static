@@ -94,6 +94,9 @@
   .thumb[data-tone="blue"] { background: linear-gradient(135deg, #3b4d64, #211e27); }
   .thumb[data-tone="plum"] { background: linear-gradient(135deg, #75434f, #281d25); }
   .thumb[data-tone="rust"] { background: linear-gradient(135deg, #b04b2c, #42231c); }
+  .thumb-image { position: relative; }
+  .thumb-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thumb-image:after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 48%, rgba(20,18,15,.5)); }
   .thumb .orbit { width: 116px; aspect-ratio: 1; border: 1px solid rgba(244,234,216,.35); border-radius: 50%; position: absolute; transform: rotate(-22deg) scaleX(1.5); }
   .thumb .orbit:after { content: ""; position: absolute; width: 9px; height: 9px; background: var(--gold); border-radius: 50%; top: 10px; left: 13px; }
   .play { width: 54px; height: 54px; z-index: 1; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.55); background: rgba(20,18,15,.7); border-radius: 50%; color: white; padding-left: 3px; backdrop-filter: blur(8px); }
@@ -104,6 +107,9 @@
   .card-content h3 { margin: 8px 0 7px; font-size: 1.15rem; line-height: 1.25; letter-spacing: -.025em; }
   .card-content p { color: var(--muted); font-size: .88rem; margin: 0; }
   .card-meta { display: flex; justify-content: space-between; gap: 12px; margin-top: 17px; padding-top: 13px; border-top: 1px solid var(--line); color: #918573; font-size: .75rem; }
+  .spotify-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+  .spotify-link { color: var(--cream); border: 1px solid rgba(102,132,106,.7); background: rgba(102,132,106,.16); border-radius: 999px; padding: 7px 10px; font-size: .75rem; font-weight: 800; }
+  .spotify-link:hover, .spotify-link:focus-visible { background: var(--green); color: white; }
   .empty { display: none; grid-column: 1/-1; padding: 28px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: var(--radius); }
   .story { display: grid; grid-template-columns: .85fr 1.15fr; gap: 46px; align-items: center; }
   .story-art { min-height: 330px; border-radius: 22px; background: linear-gradient(145deg, #e2b65d, #b94831 55%, #3b2a20); position: relative; overflow: hidden; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; color: #201710; box-shadow: var(--shadow); }
@@ -221,6 +227,23 @@
     </div>
 
     <div class="archive-grid" id="archiveGrid">
+      <article class="archive-card" data-category="artistes" data-search="cheb fayçal sakina 1991 raï ancienne nouvelle version spotify">
+        <div class="thumb thumb-image">
+          <img src="images/Cheb Fayçal - Sakina (1991).jpg" alt="Cheb Fayçal - Sakina (1991)">
+          <button class="play" aria-label="En savoir plus sur Cheb Fayçal - Sakina">▶</button>
+          <span class="duration">1991 · Reprise</span>
+        </div>
+        <div class="card-content">
+          <span class="tag">Artiste · Raï</span>
+          <h3>Cheb Fayçal — Sakina</h3>
+          <p>Un même titre à écouter dans sa version ancienne de 1991 et dans une nouvelle interprétation.</p>
+          <div class="spotify-links">
+            <a class="spotify-link" href="https://open.spotify.com/intl-fr/track/6SO5kliiQmpTeJjRF5Wx3m?si=bc470bada76f4c38" target="_blank" rel="noopener noreferrer">Version ancienne ↗</a>
+            <a class="spotify-link" href="https://open.spotify.com/intl-fr/track/1cC0IQYMJkioVuwgusxGj5?si=844fe00f15c34aae" target="_blank" rel="noopener noreferrer">Nouvelle version ↗</a>
+          </div>
+          <div class="card-meta"><span>Mémoire raï</span><span>Deux époques, un titre</span></div>
+        </div>
+      </article>
       <article class="archive-card" data-category="emission" data-search="bled music plateau émission souvenirs télévision">
         <div class="thumb" data-tone="rust"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur Bled Music : le plateau">▶</button><span class="duration">Archive</span></div>
         <div class="card-content"><span class="tag">Émission</span><h3>Bled Music : le plateau</h3><p>Retour dans l'ambiance de l'émission et de ses rendez-vous musicaux.</p><div class="card-meta"><span>Souvenir télévisuel</span><span>Archive à compléter ↗</span></div></div>
@@ -286,9 +309,9 @@
     <button class="modal-close" id="modalClose" aria-label="Fermer">×</button>
     <span class="tag">Archives Bledmusic</span>
     <h2 id="modalTitle">Une archive à retrouver</h2>
-    <div class="video-placeholder"><div><div class="big-play">▶</div><strong>Emplacement vidéo</strong><br><small>Ajoutez ici un lien vidéo vérifié et autorisé.</small></div></div>
+    <div class="video-placeholder"><div><div class="big-play">▶</div><strong>Archive musicale</strong><br><small>Consultez les liens disponibles dans la fiche.</small></div></div>
     <p id="modalDescription">Cette carte est une entrée de collection illustrative. Elle ne contient pas encore d'enregistrement original.</p>
-    <p><strong>Pour intégrer une vidéo :</strong> remplacez ce bloc par un lecteur intégré provenant d'une source officielle ou autorisée.</p>
+    <p><strong>À propos de cette archive :</strong> les liens proposés renvoient vers les morceaux disponibles sur Spotify. Vérifiez toujours la source et les droits associés avant toute republication.</p>
   </div>
 </div>
 
@@ -345,7 +368,7 @@
   const modalDescription = document.getElementById('modalDescription');
   function openArchive(card) {
     modalTitle.textContent = card.querySelector('h3').textContent;
-    modalDescription.textContent = card.querySelector('p').textContent + ' Les informations vidéo seront ajoutées dès qu’une source vérifiée sera disponible.';
+    modalDescription.textContent = card.querySelector('p').textContent;
     archiveModal.classList.add('open');
     document.getElementById('modalClose').focus();
   }
