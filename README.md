@@ -6,8 +6,8 @@ Le site est une maquette statique en construction. Il propose une première pré
 
 ## Aperçu
 
-- Page d’accueil avec une identité visuelle inspirée des affiches musicales rétro.
-- Collection d’archives consultable par catégorie et par recherche.
+- Page d’accueil avec une identité visuelle inspirée des affiches musicales rétro et une sélection de trois fiches.
+- Page dédiée aux archives, consultable par catégorie et par recherche.
 - Fenêtres de présentation pour les entrées de la collection.
 - Section sur le projet et bouton de contribution renvoyant vers le dépôt GitHub.
 - Mise en page adaptée aux écrans mobiles.
@@ -28,21 +28,22 @@ Puis ouvrez [http://localhost:8000](http://localhost:8000).
 
 ```text
 .
-├── index.html   # Page, styles et interactions JavaScript
+├── index.html   # Accueil, styles et interactions JavaScript
+├── archives.html # Collection filtrable
 └── images/      # Visuels utilisés par les cartes d’archives
 ```
 
-Le site est volontairement autonome : le HTML, le CSS et le JavaScript sont réunis dans `index.html`.
+Le site est volontairement autonome : le HTML, le CSS et le JavaScript de chaque page sont réunis dans son fichier HTML.
 
 ## Mettre à jour la collection
 
-Les cartes de la collection se trouvent dans la section `#archives` de `index.html`. Pour ajouter ou modifier une entrée :
+Les cartes de la collection se trouvent dans `archives.html`. La page d’accueil affiche les trois premières fiches et renvoie vers cette collection. Pour ajouter ou modifier une entrée :
 
 1. Adaptez le contenu d’une carte `<article class="archive-card">`.
 2. Choisissez une catégorie existante (`emission`, `clips` ou `artistes`) dans `data-category`.
 3. Mettez à jour `data-search` avec des mots-clés utiles à la recherche.
 4. Ajoutez les informations vérifiées, les crédits et, le cas échéant, un lien vidéo autorisé.
-5. Vérifiez le rendu sur ordinateur et mobile, ainsi que les filtres et la recherche.
+5. Vérifiez le rendu sur ordinateur et mobile, ainsi que les filtres et la recherche sur la page des archives.
 
 Les fenêtres de détail sont actuellement des emplacements de présentation. Les liens, dates, crédits et médias réels doivent être vérifiés avant publication.
 
