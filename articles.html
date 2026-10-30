@@ -68,8 +68,9 @@
   .thumb[data-tone="blue"] { background: linear-gradient(135deg, #3b4d64, #211e27); }
   .thumb[data-tone="plum"] { background: linear-gradient(135deg, #75434f, #281d25); }
   .thumb[data-tone="rust"] { background: linear-gradient(135deg, #b04b2c, #42231c); }
-  .thumb-image { position: relative; }
-  .thumb-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thumb-image { position: relative; background: none; }
+  .thumb-image:before { display: none; }
+  .thumb-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .thumb-image:after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 48%, rgba(20,18,15,.5)); }
   .thumb .orbit { width: 116px; aspect-ratio: 1; border: 1px solid rgba(244,234,216,.35); border-radius: 50%; position: absolute; transform: rotate(-22deg) scaleX(1.5); }
   .thumb .orbit:after { content: ""; position: absolute; width: 9px; height: 9px; background: var(--gold); border-radius: 50%; top: 10px; left: 13px; }
@@ -153,6 +154,10 @@
     </div>
 
     <div class="article-grid" id="articleGrid">
+      <article class="article-card" data-category="emission" data-search="bled music plateau émission souvenirs télévision">
+        <div class="thumb thumb-image"><img src="images/generique-debut.png" alt="Générique de début de Bled Music"><span class="duration">Archive</span></div>
+        <div class="card-content"><span class="tag">Émission</span><h2>Générique de début de Bled Music</h2><p>Un générique emblématique qui ouvre chaque épisode de l'émission.</p><div class="spotify-links"><a class="spotify-link" href="https://www.youtube.com/watch?v=e5l0uuGvSBQ" target="_blank" rel="noopener noreferrer">Voir la vidéo sur YouTube ↗</a></div><div class="card-meta"><span>Souvenir télévisuel</span><span>Archive à compléter ↗</span></div></div>
+      </article>
       <article class="article-card" data-category="artistes" data-search="cheb fayçal sakina 1991 raï ancienne nouvelle version spotify">
         <div class="thumb thumb-image">
           <img src="images/Cheb Fayçal - Sakina (1991).jpg" alt="Cheb Fayçal - Sakina (1991)">
@@ -169,10 +174,6 @@
           </div>
           <div class="card-meta"><span>Mémoire raï</span><span>Deux époques, un titre</span></div>
         </div>
-      </article>
-      <article class="article-card" data-category="emission" data-search="bled music plateau émission souvenirs télévision">
-        <div class="thumb" data-tone="rust"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur Bled Music : le plateau">▶</button><span class="duration">Archive</span></div>
-        <div class="card-content"><span class="tag">Émission</span><h2>Bled Music : le plateau</h2><p>Retour dans l'ambiance de l'émission et de ses rendez-vous musicaux.</p><div class="card-meta"><span>Souvenir télévisuel</span><span>Archive à compléter ↗</span></div></div>
       </article>
       <article class="article-card" data-category="clips" data-search="raï clips musique algérie années 90">
         <div class="thumb" data-tone="gold"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur les sons raï">▶</button><span class="duration">Sélection</span></div>
