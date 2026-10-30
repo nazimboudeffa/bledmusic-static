@@ -29,7 +29,7 @@ Puis ouvrez [http://localhost:8000](http://localhost:8000).
 ```text
 .
 ├── index.html   # Accueil, styles et interactions JavaScript
-├── archives.html # Collection filtrable
+├── articles.html # Collection filtrable
 └── images/      # Visuels utilisés par les cartes d’archives
 ```
 
@@ -37,7 +37,7 @@ Le site est volontairement autonome : le HTML, le CSS et le JavaScript de chaque
 
 ## Mettre à jour la collection
 
-Les cartes de la collection se trouvent dans `archives.html`. La page d’accueil affiche les trois premières fiches et renvoie vers cette collection. Pour ajouter ou modifier une entrée :
+Les cartes de la collection se trouvent dans `articles.html`. La page d’accueil affiche les trois premières fiches et renvoie vers cette collection. Pour ajouter ou modifier une entrée :
 
 1. Adaptez le contenu d’une carte `<article class="archive-card">`.
 2. Choisissez une catégorie existante (`emission`, `clips` ou `artistes`) dans `data-category`.

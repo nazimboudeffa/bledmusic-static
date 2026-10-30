@@ -57,10 +57,10 @@
   .search { width: min(100%, 300px); display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 999px; padding: 9px 14px; color: var(--muted); }
   .search input { min-width: 0; width: 100%; background: transparent; color: var(--cream); border: 0; outline: 0; }
   .search input::placeholder { color: #887d6d; }
-  .archive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .archive-card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .2s, border-color .2s; }
-  .archive-card[hidden] { display: none !important; }
-  .archive-card:hover { transform: translateY(-4px); border-color: rgba(226,182,93,.45); }
+  .article-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .article-card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .2s, border-color .2s; }
+  .article-card[hidden] { display: none !important; }
+  .article-card:hover { transform: translateY(-4px); border-color: rgba(226,182,93,.45); }
   .thumb { aspect-ratio: 16 / 10; position: relative; display: grid; place-items: center; overflow: hidden; background: linear-gradient(135deg, #653126, #2d2520); }
   .thumb:before { content: ""; position: absolute; inset: 0; opacity: .55; background: repeating-linear-gradient(135deg, transparent 0 14px, rgba(255,255,255,.07) 14px 16px); }
   .thumb[data-tone="gold"] { background: linear-gradient(135deg, #8c642d, #31251c); }
@@ -98,7 +98,7 @@
   .video-placeholder .big-play { font-size: 2.6rem; color: var(--red); }
   :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
   @media (max-width: 850px) {
-    .archive-grid { grid-template-columns: repeat(2, 1fr); }
+    .article-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 620px) {
     .wrap { width: min(100% - 28px, 1160px); }
@@ -110,8 +110,8 @@
     section { padding: 52px 0; }
     .section-head { align-items: start; flex-direction: column; }
     .search { width: 100%; }
-    .archive-grid { grid-template-columns: 1fr; }
-    .archive-card { display: grid; grid-template-columns: 42% 58%; }
+    .article-grid { grid-template-columns: 1fr; }
+    .article-card { display: grid; grid-template-columns: 42% 58%; }
     .thumb { height: 100%; min-height: 190px; aspect-ratio: auto; }
     .card-content { padding: 14px; }
     .card-content h2 { font-size: 1rem; }
@@ -152,8 +152,8 @@
       <label class="search">⌕ <input id="searchInput" type="search" placeholder="Rechercher un souvenir…" aria-label="Rechercher dans les archives"></label>
     </div>
 
-    <div class="archive-grid" id="archiveGrid">
-      <article class="archive-card" data-category="artistes" data-search="cheb fayçal sakina 1991 raï ancienne nouvelle version spotify">
+    <div class="article-grid" id="articleGrid">
+      <article class="article-card" data-category="artistes" data-search="cheb fayçal sakina 1991 raï ancienne nouvelle version spotify">
         <div class="thumb thumb-image">
           <img src="images/Cheb Fayçal - Sakina (1991).jpg" alt="Cheb Fayçal - Sakina (1991)">
           <button class="play" aria-label="En savoir plus sur Cheb Fayçal - Sakina">▶</button>
@@ -170,35 +170,35 @@
           <div class="card-meta"><span>Mémoire raï</span><span>Deux époques, un titre</span></div>
         </div>
       </article>
-      <article class="archive-card" data-category="emission" data-search="bled music plateau émission souvenirs télévision">
+      <article class="article-card" data-category="emission" data-search="bled music plateau émission souvenirs télévision">
         <div class="thumb" data-tone="rust"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur Bled Music : le plateau">▶</button><span class="duration">Archive</span></div>
         <div class="card-content"><span class="tag">Émission</span><h2>Bled Music : le plateau</h2><p>Retour dans l'ambiance de l'émission et de ses rendez-vous musicaux.</p><div class="card-meta"><span>Souvenir télévisuel</span><span>Archive à compléter ↗</span></div></div>
       </article>
-      <article class="archive-card" data-category="clips" data-search="raï clips musique algérie années 90">
+      <article class="article-card" data-category="clips" data-search="raï clips musique algérie années 90">
         <div class="thumb" data-tone="gold"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur les sons raï">▶</button><span class="duration">Sélection</span></div>
         <div class="card-content"><span class="tag">Clips musicaux</span><h2>Les sons raï qui restent</h2><p>Une place pour les refrains, les clips et les découvertes qui ont marqué une génération.</p><div class="card-meta"><span>Raï · Pop algérienne</span><span>Collection thématique</span></div></div>
       </article>
-      <article class="archive-card" data-category="artistes" data-search="artistes invités chanteurs musiciens scène algérienne">
+      <article class="article-card" data-category="artistes" data-search="artistes invités chanteurs musiciens scène algérienne">
         <div class="thumb" data-tone="green"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur les artistes invités">▶</button><span class="duration">Portraits</span></div>
         <div class="card-content"><span class="tag">Artistes</span><h2>Les visages de la scène</h2><p>Des portraits d'artistes, de musiciens et d'invités à retrouver au fil des archives.</p><div class="card-meta"><span>Portraits & témoignages</span><span>Collection à enrichir</span></div></div>
       </article>
-      <article class="archive-card" data-category="emission" data-search="animateurs souvenirs coulisses télévision algérienne">
+      <article class="article-card" data-category="emission" data-search="animateurs souvenirs coulisses télévision algérienne">
         <div class="thumb" data-tone="blue"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur les coulisses">▶</button><span class="duration">Coulisses</span></div>
         <div class="card-content"><span class="tag">Émission</span><h2>Dans les coulisses</h2><p>Les animateurs, les équipes et les petits détails qui donnent vie aux souvenirs.</p><div class="card-meta"><span>Récits de plateau</span><span>Archives recherchées</span></div></div>
       </article>
-      <article class="archive-card" data-category="clips" data-search="chansons classiques clips patrimoine musical algérien">
+      <article class="article-card" data-category="clips" data-search="chansons classiques clips patrimoine musical algérien">
         <div class="thumb" data-tone="plum"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur les classiques">▶</button><span class="duration">Classiques</span></div>
         <div class="card-content"><span class="tag">Clips musicaux</span><h2>Les classiques à revoir</h2><p>Une sélection à construire autour des chansons qui traversent les années.</p><div class="card-meta"><span>Patrimoine musical</span><span>Liens vidéo à ajouter</span></div></div>
       </article>
-      <article class="archive-card" data-category="artistes" data-search="vos cassettes photos témoignages famille souvenirs bled music">
+      <article class="article-card" data-category="artistes" data-search="vos cassettes photos témoignages famille souvenirs bled music">
         <div class="thumb" data-tone="rust"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur vos souvenirs">▶</button><span class="duration">Communauté</span></div>
         <div class="card-content"><span class="tag">Vos souvenirs</span><h2>La mémoire des téléspectateurs</h2><p>Photos, anecdotes et souvenirs personnels pour faire revivre cette époque.</p><div class="card-meta"><span>Archives participatives</span><span>Appel à contribution</span></div></div>
       </article>
-      <article class="archive-card" data-category="emission" data-search="générique musique émission télévision ambiance rendez-vous">
+      <article class="article-card" data-category="emission" data-search="générique musique émission télévision ambiance rendez-vous">
         <div class="thumb" data-tone="green"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur le générique">▶</button><span class="duration">Générique</span></div>
         <div class="card-content"><span class="tag">Émission</span><h2>Le générique qui rassemblait</h2><p>Quelques notes suffisaient pour annoncer le rendez-vous musical de la semaine.</p><div class="card-meta"><span>Mémoire sonore</span><span>Archive à retrouver</span></div></div>
       </article>
-      <article class="archive-card" data-category="clips" data-search="clips années 2000 chanson algérienne video musique">
+      <article class="article-card" data-category="clips" data-search="clips années 2000 chanson algérienne video musique">
         <div class="thumb" data-tone="blue"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur les clips d'hier">▶</button><span class="duration">Clips</span></div>
         <div class="card-content"><span class="tag">Clips musicaux</span><h2>Les clips d'hier</h2><p>Des images et des refrains qui rappellent les chansons passées en boucle à la télévision.</p><div class="card-meta"><span>Pop · Raï · Variété</span><span>Liens à ajouter</span></div></div>
       </article>
@@ -216,7 +216,7 @@
   <div class="wrap" style="margin-top:14px;max-width:1160px">Les contenus d'archives restent la propriété de leurs ayants droit. Ce site hommage indépendant n'est pas affilié à l'ENTV ni aux détenteurs des droits de l'émission.</div>
 </footer>
 
-<div class="modal" id="archiveModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+<div class="modal" id="articleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal-box">
     <button class="modal-close" id="modalClose" aria-label="Fermer">×</button>
     <span class="tag">Archives Bledmusic</span>
@@ -241,7 +241,7 @@
   }));
 
   const filters = [...document.querySelectorAll('.filter')];
-  const cards = [...document.querySelectorAll('.archive-card')];
+  const cards = [...document.querySelectorAll('.article-card')];
   const searchInput = document.getElementById('searchInput');
   const emptyState = document.getElementById('emptyState');
   let activeFilter = 'tout';
@@ -268,21 +268,21 @@
   }));
   searchInput.addEventListener('input', filterCards);
 
-  const archiveModal = document.getElementById('archiveModal');
+  const articleModal = document.getElementById('articleModal');
   const modalTitle = document.getElementById('modalTitle');
   const modalDescription = document.getElementById('modalDescription');
-  function openArchive(card) {
+  function openArticle(card) {
     modalTitle.textContent = card.querySelector('h2').textContent;
     modalDescription.textContent = card.querySelector('p').textContent;
-    archiveModal.classList.add('open');
+    articleModal.classList.add('open');
     document.getElementById('modalClose').focus();
   }
-  document.querySelectorAll('.archive-card .play').forEach(button => {
-    button.addEventListener('click', () => openArchive(button.closest('.archive-card')));
+  document.querySelectorAll('.article-card .play').forEach(button => {
+    button.addEventListener('click', () => openArticle(button.closest('.article-card')));
   });
-  function closeModal() { archiveModal.classList.remove('open'); }
+  function closeModal() { articleModal.classList.remove('open'); }
   document.getElementById('modalClose').addEventListener('click', closeModal);
-  archiveModal.addEventListener('click', event => { if (event.target === archiveModal) closeModal(); });
+  articleModal.addEventListener('click', event => { if (event.target === articleModal) closeModal(); });
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape') closeModal();
   });

@@ -52,7 +52,7 @@
   h1 em { font-style: normal; color: var(--gold); }
   .hero-copy { color: var(--muted); max-width: 560px; font-size: 1.08rem; }
   .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-  .btn { border: 0; padding: 13px 18px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; font-weight: 800; transition: transform .2s, background .2s; }
+  .btn { border: 1px solid transparent; padding: 13px 18px; font-size: 1rem; line-height: 1.55; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; font-weight: 800; transition: transform .2s, background .2s; }
   .btn:hover { transform: translateY(-2px); }
   .btn-primary { background: var(--red); color: white; box-shadow: 0 8px 24px rgba(217,75,53,.22); }
   .btn-secondary { background: transparent; color: var(--cream); border: 1px solid var(--line); }
@@ -85,9 +85,9 @@
   .search { width: min(100%, 300px); display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 999px; padding: 9px 14px; color: var(--muted); }
   .search input { min-width: 0; width: 100%; background: transparent; color: var(--cream); border: 0; outline: 0; }
   .search input::placeholder { color: #887d6d; }
-  .archive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .archive-card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .2s, border-color .2s; }
-  .archive-card:hover { transform: translateY(-4px); border-color: rgba(226,182,93,.45); }
+  .article-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .article-card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .2s, border-color .2s; }
+  .article-card:hover { transform: translateY(-4px); border-color: rgba(226,182,93,.45); }
   .thumb { aspect-ratio: 16 / 10; position: relative; display: grid; place-items: center; overflow: hidden; background: linear-gradient(135deg, #653126, #2d2520); }
   .thumb:before { content: ""; position: absolute; inset: 0; opacity: .55; background: repeating-linear-gradient(135deg, transparent 0 14px, rgba(255,255,255,.07) 14px 16px); }
   .thumb[data-tone="gold"] { background: linear-gradient(135deg, #8c642d, #31251c); }
@@ -126,6 +126,9 @@
   .discord-invite { padding: 18px 0; text-align: center; color: var(--muted); }
   .discord-link { color: #5865f2; font-weight: 800; text-decoration: underline; text-decoration-color: rgba(88,101,242,.5); text-underline-offset: 3px; }
   .discord-link:hover, .discord-link:focus-visible { color: #7983f5; }
+  .discord-invite .top50-link { margin-top: 12px; }
+  .top50-link { background: linear-gradient(135deg, var(--gold), #f0ca78); color: #21180f; box-shadow: 0 6px 18px rgba(226,182,93,.2); }
+  .top50-link:hover, .top50-link:focus-visible { background: var(--cream); }
   footer { border-top: 1px solid var(--line); padding: 28px 0; color: #938675; font-size: .82rem; }
   .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
   .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
@@ -142,7 +145,7 @@
     .hero { grid-template-columns: 1fr; padding-top: 48px; }
     .hero-art { min-height: 360px; }
     .poster { width: min(75%, 370px); }
-    .archive-grid { grid-template-columns: repeat(2, 1fr); }
+    .article-grid { grid-template-columns: repeat(2, 1fr); }
     .story { grid-template-columns: 1fr; gap: 28px; }
     .story-art { min-height: 270px; }
   }
@@ -161,8 +164,8 @@
     section { padding: 52px 0; }
     .section-head { align-items: start; flex-direction: column; }
     .search { width: 100%; }
-    .archive-grid { grid-template-columns: 1fr; }
-    .archive-card { display: grid; grid-template-columns: 42% 58%; }
+    .article-grid { grid-template-columns: 1fr; }
+    .article-card { display: grid; grid-template-columns: 42% 58%; }
     .thumb { height: 100%; min-height: 190px; aspect-ratio: auto; }
     .card-content { padding: 14px; }
     .card-content h3 { font-size: 1rem; }
@@ -182,10 +185,10 @@
     </a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">Menu ☰</button>
     <nav id="mainNav" aria-label="Navigation principale">
-      <a href="archives.html">Les archives</a>
+      <a href="articles.html">Les archives</a>
       <a href="#histoire">L'histoire</a>
       <a href="#contribuer">Participer</a>
-      <a class="nav-cta" href="archives.html">Explorer la collection ↗</a>
+      <a class="nav-cta" href="articles.html">Explorer la collection ↗</a>
     </nav>
   </div>
 </header>
@@ -197,8 +200,8 @@
       <h1>Le son d'une <em>époque.</em></h1>
       <p class="hero-copy">Un hommage à Bled Music (qui respecte les droits d'auteurs), à celles et ceux qui l'ont regardée, aux artistes qui ont marqué les écrans et aux chansons qui continuent de nous rassembler.</p>
       <div class="actions">
-        <a class="btn btn-primary" href="archives.html">▶ Explorer les archives</a>
-        <a class="btn btn-secondary" href="#histoire">Découvrir l'histoire</a>
+        <a class="btn btn-primary" href="articles.html">▶ Explorer les articles</a>
+        <a class="btn top50-link" href="DZ_TOP_50_20261030.html">★ TOP 50 DZ ↗</a>
       </div>
     </div>
     <div class="hero-art" aria-label="Affiche graphique rétro Bled Music">
@@ -219,8 +222,8 @@
       <div><div class="eyebrow">La collection</div><h2>Quelques souvenirs</h2></div>
       <p>Trois premières fiches pour faire revivre la mémoire musicale de Bled Music.</p>
     </div>
-    <div class="archive-grid" id="archiveGrid">
-      <article class="archive-card" data-category="artistes" data-search="cheb fayçal sakina 1991 raï ancienne nouvelle version spotify">
+    <div class="article-grid" id="articleGrid">
+      <article class="article-card" data-category="artistes" data-search="cheb fayçal sakina 1991 raï ancienne nouvelle version spotify">
         <div class="thumb thumb-image">
           <img src="images/Cheb Fayçal - Sakina (1991).jpg" alt="Cheb Fayçal - Sakina (1991)">
           <button class="play" aria-label="En savoir plus sur Cheb Fayçal - Sakina">▶</button>
@@ -237,16 +240,16 @@
           <div class="card-meta"><span>Mémoire raï</span><span>Deux époques, un titre</span></div>
         </div>
       </article>
-      <article class="archive-card" data-category="emission" data-search="bled music plateau émission souvenirs télévision">
+      <article class="article-card" data-category="emission" data-search="bled music plateau émission souvenirs télévision">
         <div class="thumb" data-tone="rust"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur Bled Music : le plateau">▶</button><span class="duration">Archive</span></div>
         <div class="card-content"><span class="tag">Émission</span><h3>Bled Music : le plateau</h3><p>Retour dans l'ambiance de l'émission et de ses rendez-vous musicaux.</p><div class="card-meta"><span>Souvenir télévisuel</span><span>Archive à compléter ↗</span></div></div>
       </article>
-      <article class="archive-card" data-category="clips" data-search="raï clips musique algérie années 90">
+      <article class="article-card" data-category="clips" data-search="raï clips musique algérie années 90">
         <div class="thumb" data-tone="gold"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur les sons raï">▶</button><span class="duration">Sélection</span></div>
         <div class="card-content"><span class="tag">Clips musicaux</span><h3>Les sons raï qui restent</h3><p>Une place pour les refrains, les clips et les découvertes qui ont marqué une génération.</p><div class="card-meta"><span>Raï · Pop algérienne</span><span>Collection thématique</span></div></div>
       </article>
     </div>
-    <div class="actions"><a class="btn btn-primary" href="archives.html">Explorez les archives de Bled Music ↗</a></div>
+    <div class="actions"><a class="btn btn-primary" href="articles.html">Explorez les articles de Bled Music ↗</a></div>
   </section>
 
   <section class="wrap" id="histoire">
@@ -270,18 +273,21 @@
   </section>
 </main>
 
-<div class="discord-invite wrap">Si vous souhaitez discuter avec la communauté, <a class="discord-link" href="https://discord.gg/a58pcSNCw4">rejoignez le Discord des Bouzidistes.</a></div>
+<div class="discord-invite wrap">
+  <div>Si vous souhaitez discuter avec la communauté, <a class="discord-link" href="https://discord.gg/a58pcSNCw4">rejoignez le Discord des Bouzidistes.</a></div>
+  <a class="btn top50-link" href="DZ_TOP_50_20261030.html" target="_blank" rel="noopener noreferrer">★ TOP 50 DZ ↗</a>
+</div>
 
 <footer>
   <div class="wrap footer-inner">
     <a class="brand" href="#accueil"><span class="brand-mark">♪</span><span>BLED<span>MUSIC</span></span></a>
     <span>Un site hommage indépendant · Les souvenirs appartiennent à tous.</span>
-    <div class="footer-links"><a href="archives.html">Archives</a><a href="#histoire">À propos</a><a href="#contribuer">Contribuer</a></div>
+    <div class="footer-links"><a href="articles.html">Archives</a><a href="#histoire">À propos</a><a href="#contribuer">Contribuer</a></div>
   </div>
   <div class="wrap" style="margin-top:14px;max-width:1160px">Les contenus d'archives restent la propriété de leurs ayants droit. Ce site maquette n'est pas affilié à l'ENTV ni aux détenteurs des droits de l'émission. Merci de respecter les droits d'auteurs</div>
 </footer>
 
-<div class="modal" id="archiveModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+<div class="modal" id="articleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal-box">
     <button class="modal-close" id="modalClose" aria-label="Fermer">×</button>
     <span class="tag">Archives Bledmusic</span>
@@ -316,21 +322,21 @@
     menuBtn.setAttribute('aria-expanded', 'false');
   }));
 
-  const archiveModal = document.getElementById('archiveModal');
+  const articleModal = document.getElementById('articleModal');
   const modalTitle = document.getElementById('modalTitle');
   const modalDescription = document.getElementById('modalDescription');
-  function openArchive(card) {
+  function openArticle(card) {
     modalTitle.textContent = card.querySelector('h3').textContent;
     modalDescription.textContent = card.querySelector('p').textContent;
-    archiveModal.classList.add('open');
+    articleModal.classList.add('open');
     document.getElementById('modalClose').focus();
   }
-  document.querySelectorAll('.archive-card .play').forEach(button => {
-    button.addEventListener('click', () => openArchive(button.closest('.archive-card')));
+  document.querySelectorAll('.article-card .play').forEach(button => {
+    button.addEventListener('click', () => openArticle(button.closest('.article-card')));
   });
   function closeModal(modal) { modal.classList.remove('open'); }
-  document.getElementById('modalClose').addEventListener('click', () => closeModal(archiveModal));
-  archiveModal.addEventListener('click', event => { if (event.target === archiveModal) closeModal(archiveModal); });
+  document.getElementById('modalClose').addEventListener('click', () => closeModal(articleModal));
+  articleModal.addEventListener('click', event => { if (event.target === articleModal) closeModal(articleModal); });
 
   const contributeModal = document.getElementById('contributeModal');
   document.getElementById('contributeBtn').addEventListener('click', () => {
@@ -341,7 +347,7 @@
   contributeModal.addEventListener('click', event => { if (event.target === contributeModal) closeModal(contributeModal); });
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape') {
-      closeModal(archiveModal);
+      closeModal(articleModal);
       closeModal(contributeModal);
     }
   });
