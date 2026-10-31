@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#14120f">
-<meta name="description" content="Explorez les archives de Bled Music : émissions, clips et artistes de la mémoire musicale algérienne.">
+<meta name="description" content="Lisez les articles de Bled Music : portraits, émissions, clips et archives de la mémoire musicale algérienne.">
 <script defer data-domain="bledmusic.com" src="https://plausible.codewithadu.de/js/script.js"></script>
-<title>Les archives — Bled Music</title>
+<title>Les articles — Bled Music</title>
 <style>
   :root {
     --bg: #14120f;
@@ -131,10 +131,11 @@
     </a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">Menu ☰</button>
     <nav id="mainNav" aria-label="Navigation principale">
-      <a href="index.html#archives" aria-current="page">Les archives</a>
-      <a href="index.html#histoire">L'histoire</a>
+      <a href="index.html#accueil">Accueil</a>
+      <a href="articles.html" aria-current="page">Articles</a>
+      <a href="index.html#histoire">À propos</a>
       <a href="index.html#contribuer">Participer</a>
-      <a class="nav-cta" href="index.html#archives">Retour à l’accueil ↗</a>
+      <a class="nav-cta" href="articles.html?filtre=archives">Archives ↗</a>
     </nav>
   </div>
 </header>
@@ -142,23 +143,24 @@
 <main>
   <section class="wrap">
     <div class="section-head">
-      <div><div class="eyebrow">La collection</div><h1>Les archives de Bledmusic</h1></div>
-      <p>Explorez les fiches de la collection, par catégorie ou avec une recherche par mot-clé.</p>
+      <div>      <div class="eyebrow">Actualité & mémoire</div><h1>Les articles de Bledmusic</h1></div>
+            <p>Lisez les derniers articles et remontez le temps grâce au tag Archives, ou cherchez par mot-clé.</p>
     </div>
-    <div class="filters" role="group" aria-label="Filtrer les archives">
+    <div class="filters" role="group" aria-label="Filtrer les articles">
       <button class="filter active" data-filter="tout" aria-pressed="true">Tout voir</button>
       <button class="filter" data-filter="emission" aria-pressed="false">Émissions</button>
       <button class="filter" data-filter="clips" aria-pressed="false">Clips musicaux</button>
       <button class="filter" data-filter="artistes" aria-pressed="false">Artistes</button>
+      <button class="filter" data-filter="archives" aria-pressed="false">Archives</button>
       <label class="search">⌕ <input id="searchInput" type="search" placeholder="Rechercher un souvenir…" aria-label="Rechercher dans les archives"></label>
     </div>
 
     <div class="article-grid" id="articleGrid">
-      <article class="article-card" data-category="emission" data-search="bled music plateau émission souvenirs télévision">
+      <article class="article-card" data-category="emission archives" data-search="bled music plateau émission souvenirs télévision">
         <div class="thumb thumb-image"><img src="images/generique-debut.png" alt="Générique de début de Bled Music"><span class="duration">Archive</span></div>
         <div class="card-content"><span class="tag">Émission</span><h2>Générique de début</h2><p>Un générique emblématique qui ouvre chaque épisode de l'émission.</p><div class="spotify-links"><a class="spotify-link" href="https://www.youtube.com/watch?v=e5l0uuGvSBQ" target="_blank" rel="noopener noreferrer">Voir la vidéo sur YouTube ↗</a></div><div class="card-meta"><span>Souvenir télévisuel</span><span>Archive à compléter ↗</span></div></div>
       </article>
-      <article class="article-card" data-category="artistes" data-search="cheb fayçal sakina 1991 raï ancienne nouvelle version spotify">
+      <article class="article-card" data-category="artistes archives" data-search="cheb fayçal sakina 1991 raï ancienne nouvelle version spotify">
         <div class="thumb thumb-image">
           <img src="images/Cheb Fayçal - Sakina (1991).jpg" alt="Cheb Fayçal - Sakina (1991)">
           <span class="duration">1991 · Reprise</span>
@@ -200,7 +202,7 @@
         <div class="thumb" data-tone="rust"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur vos souvenirs">▶</button><span class="duration">Communauté</span></div>
         <div class="card-content"><span class="tag">Vos souvenirs</span><h2>La mémoire des téléspectateurs</h2><p>Photos, anecdotes et souvenirs personnels pour faire revivre cette époque.</p><div class="card-meta"><span>Archives participatives</span><span>Appel à contribution</span></div></div>
       </article>
-      <article class="article-card" data-category="emission" data-search="générique musique émission télévision ambiance rendez-vous">
+      <article class="article-card" data-category="emission archives" data-search="générique musique émission télévision ambiance rendez-vous">
         <div class="thumb" data-tone="yellow"><span class="orbit"></span><button class="play" aria-label="En savoir plus sur le générique">▶</button><span class="duration">Générique</span></div>
         <div class="card-content"><span class="tag">Émission</span><h2>Le générique qui rassemblait</h2><p>Quelques notes suffisaient pour annoncer le rendez-vous musical de la semaine.</p><div class="card-meta"><span>Mémoire sonore</span><span>Archive à retrouver</span></div></div>
       </article>
@@ -217,7 +219,7 @@
   <div class="wrap footer-inner">
     <a class="brand" href="index.html#accueil"><span class="brand-mark">♪</span><span>BLED<span>MUSIC</span></span></a>
     <span>Un site hommage indépendant · Les souvenirs appartiennent à tous.</span>
-    <div class="footer-links"><a href="index.html#archives">Accueil</a><a href="index.html#histoire">À propos</a><a href="index.html#contribuer">Contribuer</a></div>
+    <div class="footer-links"><a href="index.html#accueil">Accueil</a><a href="index.html#histoire">À propos</a><a href="index.html#contribuer">Contribuer</a></div>
   </div>
   <div class="wrap" style="margin-top:14px;max-width:1160px">Les contenus d'archives restent la propriété de leurs ayants droit. Ce site hommage indépendant n'est pas affilié à l'ENTV ni aux détenteurs des droits de l'émission.</div>
 </footer>
@@ -255,7 +257,7 @@
     const query = searchInput.value.trim().toLocaleLowerCase('fr');
     let visible = 0;
     cards.forEach(card => {
-      const categoryMatch = activeFilter === 'tout' || card.dataset.category === activeFilter;
+      const categoryMatch = activeFilter === 'tout' || card.dataset.category.split(' ').includes(activeFilter);
       const searchMatch = (card.dataset.search + ' ' + card.innerText).toLocaleLowerCase('fr').includes(query);
       const show = categoryMatch && searchMatch;
       card.hidden = !show;
@@ -273,6 +275,9 @@
     filterCards();
   }));
   searchInput.addEventListener('input', filterCards);
+  const initialFilter = new URLSearchParams(location.search).get('filtre');
+  const initialButton = filters.find(item => item.dataset.filter === initialFilter);
+  if (initialButton) initialButton.click();
 
   const articleModal = document.getElementById('articleModal');
   const modalTitle = document.getElementById('modalTitle');
