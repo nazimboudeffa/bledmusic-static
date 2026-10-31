@@ -30,10 +30,12 @@ Puis ouvrez [http://localhost:8000](http://localhost:8000).
 .
 ├── index.html   # Accueil, styles et interactions JavaScript
 ├── articles.html # Collection filtrable
+├── articles/    # Articles éditoriaux autonomes
+│   └── hamid-baroudi-caravan-to-baghdad.html
 └── images/      # Visuels utilisés par les cartes d’archives
 ```
 
-Le site est volontairement autonome : le HTML, le CSS et le JavaScript de chaque page sont réunis dans son fichier HTML.
+Le site est volontairement autonome : le HTML, le CSS et le JavaScript de chaque page sont réunis dans son fichier HTML. Les articles éditoriaux sont placés dans `articles/` et accessibles depuis la collection `articles.html`.
 
 ## Mettre à jour la collection
 
@@ -46,6 +48,8 @@ Les cartes de la collection se trouvent dans `articles.html`. La page d’accuei
 5. Vérifiez le rendu sur ordinateur et mobile, ainsi que les filtres et la recherche sur la page des archives.
 
 Les fenêtres de détail sont actuellement des emplacements de présentation. Les liens, dates, crédits et médias réels doivent être vérifiés avant publication.
+
+Pour publier un article éditorial, créez une page HTML autonome dans `articles/`, puis ajoutez une carte avec son lien dans `articles.html`. Vérifiez les chemins relatifs des liens et des images depuis ce sous-dossier.
 
 La fiche « Cheb Fayçal — Sakina » utilise `images/Cheb Fayçal - Sakina (1991).jpg` et propose deux écoutes Spotify : une version ancienne et une nouvelle version du titre.
 
