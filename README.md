@@ -64,6 +64,7 @@ Avant de partager ou de publier une photo, une vidéo ou un témoignage, vérifi
 - HTML, CSS et JavaScript natifs
 - Aucun framework, outil de compilation ou paquet à installer
 - Vérification manuelle dans un navigateur après modification
+- Traffic sur Plausible [https://plausible.codewithadu.de/bledmusic.com](https://plausible.codewithadu.de/bledmusic.com)
 
 ## Droits et affiliation
 
