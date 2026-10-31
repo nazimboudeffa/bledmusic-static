@@ -141,6 +141,10 @@
   .modal-close { position: absolute; right: 14px; top: 12px; border: 1px solid var(--line); background: transparent; color: var(--cream); border-radius: 50%; width: 36px; height: 36px; font-size: 1.2rem; }
   .modal-box h2 { margin: 10px 40px 10px 0; letter-spacing: -.04em; }
   .modal-box p { color: var(--muted); }
+  .contribution-warning { display: flex; gap: 14px; align-items: flex-start; margin: 22px 0; padding: 18px; border: 2px solid var(--red); border-radius: 14px; background: linear-gradient(135deg, rgba(217,75,53,.2), rgba(226,182,93,.08)); color: var(--cream); box-shadow: 0 8px 24px rgba(217,75,53,.12); }
+  .contribution-warning-icon { flex: 0 0 auto; color: var(--gold); font-size: 1.5rem; line-height: 1.2; }
+  .contribution-warning strong { display: block; margin-bottom: 5px; color: var(--gold); font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; }
+  .contribution-warning p { margin: 0; color: var(--cream); }
   .video-placeholder { aspect-ratio: 16/9; background: #0b0a09; border-radius: 12px; display: grid; place-items: center; text-align: center; padding: 20px; color: var(--muted); border: 1px solid var(--line); }
   .video-placeholder .big-play { font-size: 2.6rem; color: var(--red); }
   :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
@@ -313,7 +317,13 @@
     <span class="tag">Mémoire collective</span>
     <h2 id="contributeTitle">Contribuer sur GitHub</h2>
     <p>Retrouvez le projet et partagez vos idées ou vos archives directement sur GitHub.</p>
-    <p>Avant de partager ou de publier une photo, une vidéo ou un témoignage, vérifiez les droits applicables et obtenez le consentement nécessaire. N’ajoutez pas de contenu privé ou dont vous n’êtes pas autorisé à disposer.</p></p>
+    <div class="contribution-warning" role="note">
+      <span class="contribution-warning-icon" aria-hidden="true">⚠</span>
+      <div>
+        <strong>Avertissement — droits et consentement</strong>
+        <p>Avant de partager ou de publier une photo, une vidéo ou un témoignage, vérifiez les droits applicables et obtenez le consentement nécessaire. N’ajoutez pas de contenu privé ou dont vous n’êtes pas autorisé à disposer.</p>
+      </div>
+    </div>
     <a class="btn btn-primary" id="contributeGithubLink" href="https://github.com/nazimboudeffa/bledmusic-static" target="_blank" rel="noopener noreferrer">Voir le projet sur GitHub ↗</a>
   </div>
 </div>
