@@ -56,14 +56,18 @@
   h1 em { font-style: normal; color: var(--gold); }
   .intro p { color: var(--muted); max-width: 600px; font-size: 1.05rem; margin: 0; }
   section { padding: 40px 0 72px; }
-  .rank-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .rank-card { display: flex; flex-direction: column; gap: 14px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; transition: transform .2s, border-color .2s; }
-  .rank-card:hover, .rank-card:focus-visible { transform: translateY(-4px); border-color: rgba(226,182,93,.45); }
+  .timeline { list-style: none; margin: 0; padding: 0 0 0 34px; position: relative; max-width: 760px; }
+  .timeline:before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(180deg, var(--gold), var(--red) 60%, var(--line)); }
+  .timeline li { position: relative; padding-bottom: 34px; }
+  .timeline li:last-child { padding-bottom: 0; }
+  .timeline li:before { content: ""; position: absolute; left: -34px; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 3px solid var(--red); }
+  .timeline li:first-child:before { background: var(--gold); border-color: var(--gold); box-shadow: 0 0 0 5px rgba(226,182,93,.18); }
   .tag { color: var(--gold); font-size: .7rem; font-weight: 900; text-transform: uppercase; letter-spacing: .13em; }
-  .rank-card h2 { margin: 0; font-size: 1.5rem; letter-spacing: -.04em; line-height: 1.2; }
-  .rank-card p { margin: 0; color: var(--muted); font-size: .88rem; }
-  .rank-card .go { margin-top: auto; padding-top: 13px; border-top: 1px solid var(--line); color: var(--cream); font-size: .85rem; font-weight: 800; }
-  .latest { display: inline-block; margin-left: 8px; background: var(--gold); color: #21180f; border-radius: 999px; padding: 2px 8px; font-size: .65rem; letter-spacing: .08em; vertical-align: middle; }
+  .timeline a { display: block; transition: transform .2s; }
+  .timeline a:hover, .timeline a:focus-visible { transform: translateX(6px); }
+  .timeline h2 { margin: 4px 0 6px; font-size: 1.6rem; letter-spacing: -.04em; line-height: 1.2; }
+  .timeline p { margin: 0 0 8px; color: var(--muted); font-size: .92rem; }
+  .timeline .go { color: var(--cream); font-size: .85rem; font-weight: 800; border-bottom: 1px solid var(--gold); }
   .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
   .btn { border: 1px solid transparent; padding: 13px 18px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; font-weight: 800; transition: transform .2s, background .2s; }
   .btn:hover { transform: translateY(-2px); }
@@ -73,7 +77,6 @@
   .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
   .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
   :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
-  @media (max-width: 850px) { .rank-list { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 620px) {
     .wrap { width: min(100% - 28px, 1160px); }
     .nav { min-height: 68px; }
@@ -81,7 +84,6 @@
     nav { display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 18px 20px 22px; background: #171410; border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; gap: 15px; }
     nav.open { display: flex; }
     .intro { padding-top: 48px; }
-    .rank-list { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -109,20 +111,20 @@
   </div>
 
   <section class="wrap">
-    <div class="rank-list">
-      <a class="rank-card" href="DZ_TOP_50_20261101.html">
-        <span class="tag">TOP 50 DZ</span>
-        <h2>1 novembre 2026<span class="latest">Dernier</span></h2>
+    <ol class="timeline">
+      <li><a href="DZ_TOP_50_20261101.html">
+        <span class="tag">TOP 50 DZ · Dernier</span>
+        <h2>1 novembre 2026</h2>
         <p>Un nouvel algorithme qui regroupe plus de plateformes.</p>
         <span class="go">Voir le classement ↗</span>
-      </a>
-      <a class="rank-card" href="DZ_TOP_50_20261030.html">
+      </a></li>
+      <li><a href="DZ_TOP_50_20261030.html">
         <span class="tag">TOP 50 DZ</span>
         <h2>30 octobre 2026</h2>
         <p>Un classement plus inspiré par Hot HIT Algéria sur Spotify.</p>
         <span class="go">Voir le classement ↗</span>
-      </a>
-    </div>
+      </a></li>
+    </ol>
     <div class="actions"><a class="btn algorithm-link" href="https://github.com/nazimboudeffa/top-50-dz-python" target="_blank" rel="noopener noreferrer">Algorithme Open Source ↗</a></div>
   </section>
 </main>
