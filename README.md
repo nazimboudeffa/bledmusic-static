@@ -30,6 +30,8 @@ Puis ouvrez [http://localhost:8000](http://localhost:8000).
 .
 ├── index.html   # Accueil, styles et interactions JavaScript
 ├── articles.html # Collection filtrable
+├── robots.txt   # Autorise l’exploration et indique le sitemap
+├── sitemap.xml  # Pages HTML publiques du site
 ├── articles/    # Articles éditoriaux autonomes
 │   └── hamid-baroudi-caravan-to-baghdad.html
 └── images/      # Visuels utilisés par les cartes d’archives
