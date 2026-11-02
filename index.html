@@ -96,8 +96,9 @@
   .poster-disc:after { content: ""; position: absolute; width: 23%; aspect-ratio: 1; border-radius: 50%; background: var(--gold); inset: 38.5%; border: 4px solid #1a1713; }
   .floating-note { position: absolute; right: -8px; top: 8%; padding: 12px 15px; background: var(--gold); color: #21180f; border-radius: 12px; font-size: .75rem; font-weight: 900; transform: rotate(6deg); box-shadow: var(--shadow); }
   .ticker { overflow: hidden; border-block: 1px solid var(--line); background: rgba(255,255,255,.02); }
-  .ticker-inner { display: flex; width: max-content; gap: 28px; padding: 13px 0; color: var(--muted); text-transform: uppercase; letter-spacing: .16em; font-size: .72rem; font-weight: 800; animation: drift 34s linear infinite; }
-  .ticker-inner b { color: var(--red); }
+  .ticker-track { display: flex; width: max-content; animation: drift 34s linear infinite; }
+  .ticker-group { display: flex; flex: none; justify-content: space-around; gap: 28px; width: max-content; min-width: 100vw; padding: 13px 28px 13px 0; color: var(--muted); text-transform: uppercase; letter-spacing: .16em; font-size: .72rem; font-weight: 800; }
+  .ticker-group b { color: var(--red); }
   @keyframes drift { to { transform: translateX(-50%); } }
   section { padding: 72px 0; }
   .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 28px; }
@@ -243,8 +244,9 @@
     </div>
   </section>
 
-  <div class="ticker" aria-hidden="true"><div class="ticker-inner">
-    <span>Souvenirs en stéréo <b>✳</b></span><span>La musique nous relie <b>✳</b></span><span>Algérie · archives vivantes <b>✳</b></span><span>Les années qui résonnent <b>✳</b></span><span>Souvenirs en stéréo <b>✳</b></span><span>La musique nous relie <b>✳</b></span><span>Algérie · archives vivantes <b>✳</b></span><span>Les années qui résonnent <b>✳</b></span>
+  <div class="ticker" aria-hidden="true"><div class="ticker-track">
+    <div class="ticker-group"><span><b>✳</b> Souvenirs en stéréo <b>✳</b></span><span><b>✳</b> La musique nous relie <b>✳</b></span><span><b>✳</b> Algérie · archives vivantes <b>✳</b></span><span><b>✳</b> Les années qui résonnent <b>✳</b></span></div>
+    <div class="ticker-group"><span><b>✳</b> Souvenirs en stéréo <b>✳</b></span><span><b>✳</b> La musique nous relie <b>✳</b></span><span><b>✳</b> Algérie · archives vivantes <b>✳</b></span><span><b>✳</b> Les années qui résonnent <b>✳</b></span></div>
   </div></div>
 
   <section class="wrap" id="archives">
